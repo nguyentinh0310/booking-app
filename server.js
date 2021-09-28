@@ -37,13 +37,6 @@ app.use("/api", require("./router/roomRouter"));
 app.use("/api", require("./router/bookingRouter"));
 app.use("/api", require("./router/upload"));
 
-app.all("*", (req, res, next) => {
-  const err = new Error("The route can not be found");
-  err.statusCode = 404;
-  next(err);
-});
-app.use(errorHandler);
-
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));
 
@@ -51,6 +44,15 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
   });
 }
+
+app.all("*", (req, res, next) => {
+  const err = new Error("The route can not be found");
+  err.statusCode = 404;
+  next(err);
+});
+app.use(errorHandler);
+
+
 
 const PORT = process.env.PORT || 9000;
 
