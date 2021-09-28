@@ -45,11 +45,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-app.all("*", (req, res, next) => {
-  const err = new Error("The route can not be found");
-  err.statusCode = 404;
-  next(err);
-});
+
 app.use(errorHandler);
 
 
