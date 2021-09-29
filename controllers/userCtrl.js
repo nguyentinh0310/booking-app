@@ -134,6 +134,7 @@ const userCtrl = {
       res.status(200).json({
         token: access_token,
         message: "Đăng nhập thành công!",
+        user,
       });
     } catch (err) {
       next(err);
@@ -325,7 +326,7 @@ const userCtrl = {
           maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         });
 
-        res.json({ message: "Login success!" });
+        res.status(200).json({ message: "Đăng nhập thành công!" }, user);
       }
     } catch (err) {
       next(err);
@@ -363,7 +364,7 @@ const userCtrl = {
           maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         });
 
-        res.json({ msg: "Login success!" });
+        res.status(200).json({ message: "Đăng nhập thành công!" }, user);
       } else {
         const newUser = new Users({
           name,

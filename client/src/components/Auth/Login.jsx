@@ -38,7 +38,7 @@ const Login = () => {
       setLoading(false);
 
       // lưu đăng nhập ở local
-      localStorage.setItem('firstLogin', true);
+      localStorage.setItem('userData', JSON.stringify(res.data.user));
 
       dispatch(dispatchLogin());
       history.push('/');
@@ -58,7 +58,7 @@ const Login = () => {
       });
 
       setUser({ ...user, error: '', success: res.data.message });
-      localStorage.setItem('firstLogin', true);
+      localStorage.setItem('userData', JSON.stringify(res.data));
 
       dispatch(dispatchLogin());
       history.push('/');
@@ -78,7 +78,7 @@ const Login = () => {
       });
 
       setUser({ ...user, error: '', success: res.data.message });
-      localStorage.setItem('firstLogin', true);
+      localStorage.setItem('userData', JSON.stringify(res.data));
 
       dispatch(dispatchLogin());
       history.push('/');
@@ -139,7 +139,7 @@ const Login = () => {
           <div className="social">
             <GoogleLogin
               clientId="55687161092-slgs7a90j0guvn4f5vi1p6s6sf8vv9m5.apps.googleusercontent.com"
-              buttonText="Login with google"
+              buttonText="Đăng nhập Google"
               onSuccess={responseGoogle}
               cookiePolicy={'single_host_origin'}
             />

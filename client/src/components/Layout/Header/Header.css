@@ -59,7 +59,7 @@ nav ul li img {
   position: absolute;
   background: #282c34;
   width: 100%;
-  width: calc(100% + 45px);
+  width: calc(100% + 50px);
   top: 50px;
   display: none;
 }

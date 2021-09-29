@@ -1,7 +1,8 @@
 import { GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN } from 'redux/contants';
 
+let user = JSON.parse(localStorage.getItem('userData'));
 const initialState = {
-  user: [],
+  user: user ? user : {},
   isLogged: false,
   isAdmin: false,
   isLoading: true,
@@ -17,7 +18,6 @@ const authReducer = (state = initialState, action) => {
     case GET_USER_REQUEST:
       return {
         ...state,
-
         isLoading: true,
       };
     case GET_USER_SUCCESS:

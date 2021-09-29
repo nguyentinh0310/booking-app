@@ -34,6 +34,7 @@ const Routes = () => {
         <Route path="/" component={Home} exact />
         <Route path="/book/:id/:startDate/:endDate" component={isLogged ? BookingRoom : Login} exact/>
         <Route path="/mybooking" component={MyBooking} exact />
+        {/* <Route  component={NotFound}/> */}
 
         {/* Admin */}
         <Route path="/admin" component={isAdmin ? Admin : NotFound} exact />

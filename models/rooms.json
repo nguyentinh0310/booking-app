@@ -95,5 +95,29 @@
     "type": "Standard",
     "currentBookings": [],
     "description": "Bonsella Hotel nằm trong bán kính 2 km từ Lăng Chủ tịch Hồ Chí Minh và 2,5 km từ Văn miếu. Sân bay quốc tế Nội Bài cách khách sạn 30 km. Các phòng tại đây có sàn gỗ, máy lạnh và quạt. Mỗi phòng được trang bị TV truyền hình cáp màn hình phẳng, điện thoại và minibar. Phòng tắm riêng đi kèm tiện nghi vòi sen nước nóng và đồ vệ sinh cá nhân. Nước đóng chai cũng được cung cấp trong phòng."
+  },
+  {
+    "name": "The Pilgrim Hotel",
+    "imageUrls": [
+      "https://res.cloudinary.com/dwgximj2j/image/upload/v1632912271/booking/164159200_hwhbuo.jpg",
+      "https://res.cloudinary.com/dwgximj2j/image/upload/v1632912270/booking/123969432_kw0lwy.jpg",
+      "https://res.cloudinary.com/dwgximj2j/image/upload/v1632912270/booking/123969308_cz28ev.jpg"
+    ],
+    "price": 700000,
+    "type": "Delux",
+    "currentBookings": [],
+    "description": "The Pilgrim Hotel cung cấp phòng nghỉ có ban công riêng ở trung tâm thành phố Hà Nội. Khách sạn cung cấp các tiện nghi như nhà hàng, lễ tân 24 giờ, dịch vụ concierge và WiFi miễn phí trong toàn bộ khuôn viên. Khách sạn này cung cấp các phòng gia đình. Tất cả phòng nghỉ tại khách sạn đều được trang bị máy điều hòa, truyền hình vệ tinh màn hình phẳng, tủ lạnh, ấm đun nước, vòi sen, máy sấy tóc và bàn làm việc. Mỗi phòng còn có tủ để quần áo và phòng tắm riêng."
+  },
+  {
+    "name": "Hanoi Elpis Hotel",
+    "imageUrls": [
+      "https://res.cloudinary.com/dwgximj2j/image/upload/v1632912270/booking/147448828_qfni1n.jpg",
+      "https://res.cloudinary.com/dwgximj2j/image/upload/v1632912270/booking/147448910_casbwj.jpg",
+      "https://res.cloudinary.com/dwgximj2j/image/upload/v1632912270/booking/147450228_uwv3ev.jpg"
+    ],
+    "price": 900000,
+    "type": "Standard",
+    "currentBookings": [],
+    "description": "Nằm trong Khu Phố Cổ, Hanoi Elpis Hotel cách chợ Đồng Xuân 10 phút đi bộ và cách hồ Hoàn Kiếm 1 km. Nơi nghỉ này cung cấp miễn phí Wi-Fi và chỗ đỗ xe riêng. Các phòng gắn điều hòa được trang bị truyền hình cáp, tủ quần áo và phòng tắm riêng với tiện nghi vòi sen và máy sấy tóc."
   }
 ]

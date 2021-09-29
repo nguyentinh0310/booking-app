@@ -11,9 +11,9 @@ import { dispatchGetUser, dispatchLogin, fetchUser } from './redux/actions/authA
 function App() {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
-  const { isLogged } = useSelector((state) => state.auth);
+  const { isLogged  } = useSelector((state) => state.auth);
   useEffect(() => {
-    const firstLogin = localStorage.getItem('firstLogin');
+    const firstLogin = localStorage.getItem("userData")
     if (firstLogin) {
       const getToken = async () => {
         const res = await userApi.getAccessToken();
@@ -27,11 +27,11 @@ function App() {
     if (token) {
       const getUser = () => {
         dispatch(dispatchLogin());
-
-        return fetchUser(token).then((res) => {
-          dispatch(dispatchGetUser(res));
+        return fetchUser(token).then((res) => {        
+            dispatch(dispatchGetUser(res));
         });
       };
+
       getUser();
     }
   }, [token, dispatch]);
@@ -40,7 +40,7 @@ function App() {
     <Router>
       <div className="App">
         <Header />
-        <div  className="booking-app-main-container">
+        <div className="booking-app-main-container">
           <Routes />
         </div>
 

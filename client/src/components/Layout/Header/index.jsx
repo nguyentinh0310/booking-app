@@ -27,7 +27,7 @@ function Header() {
   const handleLogout = async () => {
     try {
       await userApi.logout();
-      localStorage.removeItem('firstLogin');
+      localStorage.removeItem('userData');
       window.location.href = '/';
     } catch (err) {
       window.location.href = '/';

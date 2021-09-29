@@ -179,7 +179,6 @@ const Profile = () => {
                   name="email"
                   id="email"
                   defaultValue={user.email}
-                  placeholder="Your email address"
                   disabled
                 />
               </div>
@@ -190,7 +189,7 @@ const Profile = () => {
                   type="password"
                   name="password"
                   id="password"
-                  placeholder="Your password"
+                  placeholder="*********"
                   value={password}
                   onChange={handleChange}
                 />
@@ -202,7 +201,7 @@ const Profile = () => {
                   type="password"
                   name="cf_password"
                   id="cf_password"
-                  placeholder="Confirm password"
+                  placeholder="*********"
                   value={cf_password}
                   onChange={handleChange}
                 />

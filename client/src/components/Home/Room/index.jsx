@@ -18,7 +18,12 @@ const Room = ({ room, startDate, endDate }) => {
 
   const handleClick = () => {
     if (!startDate || !endDate) {
-      setAlert('Xin mời chọn ngày!');
+      setAlert('Xin mời chọn ngày !');
+      setTimeout(() => {
+        setAlert(null);
+      }, 1500);
+    } else if (startDate === endDate) {
+      setAlert('Không được phép chọn ngày trùng nhau !');
       setTimeout(() => {
         setAlert(null);
       }, 1500);
@@ -28,7 +33,7 @@ const Room = ({ room, startDate, endDate }) => {
   };
   return (
     <>
-      <div className="row bs" data-aos="fade-up">
+      <div className="row bs">
         <div className="col-md-4 mb-1">
           <img src={room.imageUrls[0]} alt={room.name} className="room_image" />
         </div>

@@ -17,7 +17,6 @@ app.use(fileUpload({ useTempFiles: true }));
 mongoose.connect(
   process.env.MONGODB_URL,
   {
-    useFindAndModify: false,
     useNewUrlParser: true,
     useUnifiedTopology: true,
   },
@@ -45,10 +44,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-
 app.use(errorHandler);
-
-
 
 const PORT = process.env.PORT || 9000;
 

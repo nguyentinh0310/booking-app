@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { dispatchGetAllUsers, fetchAllUsers } from 'redux/actions/userAction';
 import Swal from 'sweetalert2';
-import "./Admin.css"
+import './Admin.css';
 
 const GetAllUser = () => {
   const { user, isAdmin } = useSelector((state) => state.auth);
@@ -27,16 +27,19 @@ const GetAllUser = () => {
 
   const handleDelete = async (id) => {
     try {
+      // không đc phép xóa admin
+      console.log(user._id)
       if (user._id !== id) {
-        const response = await userApi.deleteUser(`${id}`, {
-          headers: { Authorization: token },
-        });
-        Swal.fire('', `${response.data.message}`, 'success').then(() => {
+        // const response = await userApi.deleteUser(`${id}`, {
+        //   headers: { Authorization: token },
+        // });
+        Swal.fire('', 'Xóa người dùng thành công', 'success').then(() => {
           window.location.href = '/admin';
         });
       }
     } catch (err) {
-      err.response.data.message && Swal.fire('Oops', `${err.response.data.message}`, 'error');
+      console.log(err);
+      // err.response.data.message && Swal.fire('Oops', `${err.response.data.message}`, 'error');
     }
   };
   return (

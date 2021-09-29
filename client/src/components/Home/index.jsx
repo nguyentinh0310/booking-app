@@ -1,12 +1,17 @@
 import { DatePicker } from 'antd';
 import { roomApi } from 'api/roomApi';
-import Loader from 'components/utils/Loader';
-import moment from 'moment';
-import React, { Fragment, useEffect, useRef, useState } from 'react';
-import Room from './Room';
 import Banner from 'components/Layout/Banner';
-import './Home.css';
+import Loader from 'components/utils/Loader';
 import MetaData from 'components/utils/MetaData';
+import moment from 'moment';
+import queryString from 'query-string';
+import React, { Fragment, useEffect, useState } from 'react';
+import LazyLoad from 'react-lazyload';
+import './Home.css';
+import Room from './Room';
+import FilterSearch from './Room/FilterSearch';
+import FilterType from './Room/FilterType';
+
 
 const { RangePicker } = DatePicker;
 
@@ -14,19 +19,22 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [rooms, setRooms] = useState([]);
   const [duplicateRoom, setDuplicateRoom] = useState([]);
-  const [searchRoom, setSearchRoom] = useState('');
-  const [filterType, setFilterType] = useState('all');
-  const typingTimeoutRef = useRef(null);
-
+  const [filters, setFilters] = useState({
+    search: '',
+    type: '',
+  });
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
 
   useEffect(() => {
     (async () => {
       try {
+        const paramsString = queryString.stringify(filters)
+        console.log(paramsString)
         const response = await roomApi.getAllRooms();
         setRooms(response.data);
         setDuplicateRoom(response.data);
+        // setFilters(response.data)
         setLoading(false);
         window.scrollTo(0, 0);
       } catch (error) {
@@ -54,7 +62,6 @@ const Home = () => {
         // duyệt qua tất cả  room.currentBooking -> check lịch
         for (const booking of room.currentBookings) {
           console.log(booking);
-          
         }
       }
       // nếu currentBookings == 0 -> push(room)
@@ -70,35 +77,27 @@ const Home = () => {
     return current && current.valueOf() < moment().endOf('day');
   }
 
-  const handleSearchChange = (e) => {
-    setSearchRoom(e.target.value);
-    const searchString = e.target.value.trim().toLowerCase();
-    if (!searchString) {
-      return;
-    }
-    if (typingTimeoutRef.current) {
-      clearTimeout(typingTimeoutRef.current);
-    }
-
-    typingTimeoutRef.current = setTimeout(() => {
-      const room = duplicateRoom.filter((room) => {
-        return room.name.toLowerCase().includes(searchString);
-      });
-      setRooms(room);
-    }, 300);
+  const handleSearchForm = (newFilter, rooms) => {
+    // set filter kéo theo giưa search và type
+    setFilters({
+      ...filters,
+      search: newFilter.searchRoom,
+    });
+    console.log(filters);
+    console.log(rooms);
+    setRooms(rooms);
   };
 
-  const handleFilterType = (e) => {
-    setFilterType(e);
-    console.log(e);
-    if (e !== 'all') {
-      const room = duplicateRoom.filter((room) => {
-        return room.type.toLowerCase() === e.toLowerCase();
-      });
-      setRooms(room);
-    } else {
-      setRooms(duplicateRoom);
-    }
+  const handleOnChangeType = (newFilter, rooms) => {
+    // set filter kéo theo giưa search và type
+    setFilters({
+      ...filters,
+      type: newFilter.filterRoom,
+    });
+    console.log('filters', filters);
+    console.log(rooms);
+
+    setRooms(rooms);
   };
 
   return (
@@ -120,35 +119,31 @@ const Home = () => {
                 />
               </div>
               <div className="col-md-4">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Tìm kiếm..."
-                  value={searchRoom}
-                  onChange={handleSearchChange}
-                />
+                <FilterSearch onSubmit={handleSearchForm} rooms={duplicateRoom} />
               </div>
               <div className="col-md-4">
-                <select
-                  className="form-select"
-                  value={filterType}
-                  onChange={(e) => handleFilterType(e.target.value)}
-                >
-                  <option value="all">Tất cả</option>
-                  <option value="standard">Standard</option>
-                  <option value="delux">Delux</option>
-                </select>
+                <FilterType onChange={handleOnChangeType} rooms={duplicateRoom} />
               </div>
             </div>
 
             <div className="row justify-content-center mt-2">
-              {rooms?.map((room) => {
-                return (
-                  <div key={room._id} className="col-md-9 mt-2">
-                    <Room room={room} startDate={startDate} endDate={endDate} />
-                  </div>
-                );
-              })}
+              {rooms.length === 0 ? (
+                <div className="no-result bs mt-3">
+                  <h2 className="mt-5">Không tìm thấy kết quả</h2>
+                </div>
+              ) : (
+                <Fragment>
+                  {rooms?.map((room) => {
+                    return (
+                      <div key={room._id} className="col-md-9 mt-2">
+                        <LazyLoad height={200} offset={100} debounce={300} once>
+                          <Room room={room} startDate={startDate} endDate={endDate} />
+                        </LazyLoad>
+                      </div>
+                    );
+                  })}
+                </Fragment>
+              )}
             </div>
           </div>
         </Fragment>
