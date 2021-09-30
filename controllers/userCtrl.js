@@ -308,7 +308,7 @@ const userCtrl = {
           maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         });
 
-        res.status(200).json({ message: "Đăng nhập thành công" });
+        res.status(200).json({ message: "Đăng nhập thành công" },user);
       } else {
         const newUser = new Users({
           name,

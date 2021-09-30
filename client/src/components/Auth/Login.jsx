@@ -57,8 +57,8 @@ const Login = () => {
         tokenId: response.tokenId,
       });
 
-      setUser({ ...user, error: '', success: res.data.message });
-      localStorage.setItem('userData', JSON.stringify(res.data));
+      setUser({ ...user, error: '', success: res.data.user });
+      localStorage.setItem('userData', JSON.stringify(res.data.user));
 
       dispatch(dispatchLogin());
       history.push('/');
