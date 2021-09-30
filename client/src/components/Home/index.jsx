@@ -29,7 +29,7 @@ const Home = () => {
     (async () => {
       try {
         const paramsString = '?' + queryString.stringify(filters);
-        const response = await roomApi.getAllRooms(paramsString);
+        const response = await roomApi.getManyRooms(paramsString);
         setRooms(response.data);
         setDuplicateRoom(response.data);
         setLoading(false);
