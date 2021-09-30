@@ -11,8 +11,6 @@ const GetAllBooking = () => {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
 
-
-
   useEffect(() => {
     (async () => {
       try {
@@ -75,15 +73,13 @@ const GetAllBooking = () => {
                     <Link to={`admin/booking-detail/${booking._id}`}>
                       <i className="fas fa-eye"></i>
                     </Link>
-                    {booking.status === 'cancelled' && (
-                      <i
-                        className="fas fa-trash-alt"
-                        title="Remove"
-                        onClick={() => {
-                          handleDeleteBooking(booking._id, token);
-                        }}
-                      ></i>
-                    )}
+                    <i
+                      className="fas fa-trash-alt"
+                      title="Remove"
+                      onClick={() => {
+                        handleDeleteBooking(booking._id, token);
+                      }}
+                    ></i>
                   </td>
                 </tr>
               ))}
