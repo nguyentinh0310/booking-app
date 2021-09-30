@@ -13,7 +13,7 @@ function App() {
   const token = useSelector((state) => state.token);
   const { isLogged  } = useSelector((state) => state.auth);
   useEffect(() => {
-    const firstLogin = localStorage.getItem("userData")
+    const firstLogin = localStorage.getItem("userCurrent")
     if (firstLogin) {
       const getToken = async () => {
         const res = await userApi.getAccessToken();

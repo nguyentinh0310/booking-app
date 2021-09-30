@@ -27,16 +27,25 @@ const Register = () => {
   // hàm submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isEmpty(name) || isEmpty(password))
+    if (isEmpty(name) || isEmpty(password)) {
+      setTimeout(() => setUser({ ...user, err: null, success: '' }), 2000);
       return setUser({ ...user, err: 'Xin mời điền tất cả các trường.', success: '' });
+    }
 
-    if (!isEmail(email)) return setUser({ ...user, err: 'Thiếu trường email.', success: '' });
+    if (!isEmail(email)) {
+      setTimeout(() => setUser({ ...user, err: null, success: '' }), 2000);
+      return setUser({ ...user, err: 'Thiếu trường email.', success: '' });
+    }
 
-    if (isLength(password))
+    if (isLength(password)) {
+      setTimeout(() => setUser({ ...user, err: null, success: '' }), 2000);
       return setUser({ ...user, err: 'Mật khẩu 6 ký tự trở lên.', success: '' });
+    }
 
-    if (!isMatch(password, cf_password))
+    if (!isMatch(password, cf_password)){
+      setTimeout(() => setUser({ ...user, err: null, success: '' }), 2000);
       return setUser({ ...user, err: 'Mật khẩu không khớp.', success: '' });
+    }
     try {
       setLoading(true);
       // gọi api đăng ký
@@ -53,7 +62,6 @@ const Register = () => {
         setUser({ ...user, err: err.response.data.message, success: '' });
       setTimeout(() => setUser({ ...user, err: null, success: '' }), 2000);
       setLoading(false);
-
     }
   };
   return (
@@ -117,7 +125,9 @@ const Register = () => {
             </div>
 
             <div className="row">
-              <button type="submit"><b>Đăng ký</b></button>
+              <button type="submit">
+                <b>Đăng ký</b>
+              </button>
             </div>
           </form>
 

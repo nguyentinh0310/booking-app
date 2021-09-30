@@ -27,7 +27,7 @@ function Header() {
   const handleLogout = async () => {
     try {
       await userApi.logout();
-      localStorage.removeItem('userData');
+      localStorage.removeItem('userCurrent');
       window.location.href = '/';
     } catch (err) {
       window.location.href = '/';
@@ -36,7 +36,7 @@ function Header() {
 
   const userLink = () => {
     return (
-      <li className="drop-nav">
+      <li className="drop-nav ">
         <Link to="#" className="avatar">
           <img src={user.avatar} alt="" />
           <span>

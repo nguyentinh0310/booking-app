@@ -38,7 +38,7 @@ const Login = () => {
       setLoading(false);
 
       // lưu đăng nhập ở local
-      localStorage.setItem('userData', JSON.stringify(res.data.user));
+      localStorage.setItem('userCurrent', true);
 
       dispatch(dispatchLogin());
       history.push('/');
@@ -57,8 +57,8 @@ const Login = () => {
         tokenId: response.tokenId,
       });
 
-      setUser({ ...user, error: '', success: res.data.user });
-      localStorage.setItem('userData', JSON.stringify(res.data.user));
+      setUser({ ...user, error: "", success: res.data.message });
+      localStorage.setItem('userCurrent', true);
 
       dispatch(dispatchLogin());
       history.push('/');
@@ -78,7 +78,8 @@ const Login = () => {
       });
 
       setUser({ ...user, error: '', success: res.data.message });
-      localStorage.setItem('userData', JSON.stringify(res.data));
+      localStorage.setItem('userCurrent', true);
+
 
       dispatch(dispatchLogin());
       history.push('/');
