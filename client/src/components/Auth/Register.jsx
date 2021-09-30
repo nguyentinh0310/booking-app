@@ -52,6 +52,8 @@ const Register = () => {
       err.response.data.message &&
         setUser({ ...user, err: err.response.data.message, success: '' });
       setTimeout(() => setUser({ ...user, err: null, success: '' }), 2000);
+      setLoading(false);
+
     }
   };
   return (
