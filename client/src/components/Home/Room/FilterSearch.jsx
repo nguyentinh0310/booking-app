@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 
-const FilterSearch = ({ onSubmit, rooms }) => {
+const FilterSearch = ({ onSubmit }) => {
   const [searchRoom, setSearchRoom] = useState('');
   const typingTimeoutRef = useRef(null);
 
@@ -16,11 +16,8 @@ const FilterSearch = ({ onSubmit, rooms }) => {
       const formValues = {
         searchRoom: e.target.value,
       };
-      const searchString = formValues.searchRoom.trim().toLowerCase();
-      const room = rooms.filter((room) => {
-        return room.name.toLowerCase().includes(searchString);
-      });
-      onSubmit(formValues, room);
+   
+      onSubmit(formValues);
     }, 300);
   }
 

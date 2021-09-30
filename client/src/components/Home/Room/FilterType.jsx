@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const FilterType = ({ onChange, rooms }) => {
+const FilterType = ({ onChange }) => {
   const [filterType, setFilterType] = useState('all');
   const handleFilterType = (e) => {
     setFilterType(e);
@@ -10,12 +10,10 @@ const FilterType = ({ onChange, rooms }) => {
     };
 
     if (e !== 'all') {
-      const room = rooms.filter((room) => {
-        return room.type.toLowerCase() === e.toLowerCase();
-      });
-      onChange(formValues, room);
+      onChange(formValues);
     } else {
-      onChange(formValues, rooms);
+      onChange(formValues);
+      console.log(formValues);
     }
   };
   return (

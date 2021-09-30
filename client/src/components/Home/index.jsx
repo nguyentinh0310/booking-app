@@ -12,7 +12,6 @@ import Room from './Room';
 import FilterSearch from './Room/FilterSearch';
 import FilterType from './Room/FilterType';
 
-
 const { RangePicker } = DatePicker;
 
 const Home = () => {
@@ -29,20 +28,18 @@ const Home = () => {
   useEffect(() => {
     (async () => {
       try {
-        const paramsString = queryString.stringify(filters)
-        console.log(paramsString)
-        const response = await roomApi.getAllRooms();
+        const paramsString = '?' + queryString.stringify(filters);
+        const response = await roomApi.getAllRooms(paramsString);
         setRooms(response.data);
         setDuplicateRoom(response.data);
-        // setFilters(response.data)
         setLoading(false);
-        window.scrollTo(0, 0);
+        // window.scrollTo(0, 0);
       } catch (error) {
         console.log(error);
         setLoading(false);
       }
     })();
-  }, []);
+  }, [filters]);
 
   // chọn ngày
   const filterByDate = (dates) => {
@@ -77,27 +74,21 @@ const Home = () => {
     return current && current.valueOf() < moment().endOf('day');
   }
 
-  const handleSearchForm = (newFilter, rooms) => {
+  const handleSearchForm = (newFilter) => {
     // set filter kéo theo giưa search và type
     setFilters({
       ...filters,
       search: newFilter.searchRoom,
     });
     console.log(filters);
-    console.log(rooms);
-    setRooms(rooms);
   };
 
-  const handleOnChangeType = (newFilter, rooms) => {
+  const handleOnChangeType = (newFilter) => {
     // set filter kéo theo giưa search và type
     setFilters({
       ...filters,
       type: newFilter.filterRoom,
     });
-    console.log('filters', filters);
-    console.log(rooms);
-
-    setRooms(rooms);
   };
 
   return (
