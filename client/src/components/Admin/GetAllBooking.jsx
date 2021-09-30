@@ -73,13 +73,15 @@ const GetAllBooking = () => {
                     <Link to={`admin/booking-detail/${booking._id}`}>
                       <i className="fas fa-eye"></i>
                     </Link>
-                    <i
-                      className="fas fa-trash-alt"
-                      title="Remove"
-                      onClick={() => {
-                        handleDeleteBooking(booking._id, token);
-                      }}
-                    ></i>
+                    {booking.status === 'cancelled' && (
+                      <i
+                        className="fas fa-trash-alt"
+                        title="Remove"
+                        onClick={() => {
+                          handleDeleteBooking(booking._id, token);
+                        }}
+                      ></i>
+                    )}
                   </td>
                 </tr>
               ))}
