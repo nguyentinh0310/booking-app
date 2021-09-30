@@ -68,4 +68,5 @@ nav ul li img {
 }
 .drop-nav:hover .dropdown {
   display: block;
+  text-align: center;
 }
